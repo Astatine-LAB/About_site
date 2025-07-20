@@ -14,34 +14,28 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+
       - name: Use Node.js 20
         uses: actions/setup-node@v3
         with:
           node-version: 20
+
       - name: Cache node_modules
-        id: cache
         uses: actions/cache@v3
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
       - name: Install dependencies
-        run: npm install
-        if: steps.cache.outputs.cache-hit != 'true'
-      - name: Set environment variables
-        run: |
-          # 사용하고자 하는 환경변수를 등록한다.
-          echo "REACT_APP_KAKAO_KEY=${{ secrets.REACT_APP_KAKAO_KEY }}" >> .env
-          echo "REACT_APP_URL=${{ vars.REACT_APP_URL }}" >> .env
-          # PUBLIC_URL은 CRA에서 public 폴더의 위치를 가리키는 자동 생성 환경변수이다.
-          # 나의 경우 깃헙 페이지 프로젝트 url(github.io/브랜치명)을 사용해서 이 설정이 필요했다.
-          # 만약 커스텀 도메인을 연결할 거라면, 해당 설정은 필요없을 수 있다.
-          PUBLIC_URL=$(echo $GITHUB_REPOSITORY | sed -r 's/^.+\/(.+)$/\/\1\//')
-          echo "PUBLIC_URL=$PUBLIC_URL" >> .env
+        run: npm ci
+
       - name: Build project
         run: npm run build
-      - uses: peaceiris/actions-gh-pages@v4
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
