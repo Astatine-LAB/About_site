@@ -1,43 +1,76 @@
+name: build
+
+# 워크플로우를 자동으로 트리거하고자 할 때, 어떤 이벤트에 연결할 것인지를 정의함
+# master 브랜치에 push하거나 pull_request가 일어날 때 실행된다.
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+# 각 Job은 동일한 러너에서 실행되는 워크플로우 steps들의 집합이다.
 jobs:
   build:
-    name: Build
+  	# job이 돌아갈 머신을 고르는 구문
     runs-on: ubuntu-latest
+    # 사용할 환경변수를 고르는 구문. 프로젝트 환경설정에서 정의해 둔 Environments를 사용하도록
+    # 지정할 수 있으며, 이 구문이 있어야 설정 페이지에서 만들어 둔 환경변수들에 접근 가능하다.
+    environment: github-pages
+    # gh-pages(깃헙 페이지 배포)를 위한 권한 설정
+    permissions:
+      contents: write
+	
+    # 각 job에서 실행할 명령들의 모음
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      # 리포지토리 코드를 CI 서버로 내려받고, 해당 브랜치로 전환하는 액션
+      - uses: actions/checkout@v4
+		
+      # node.js 18 버전을 사용하도록 설정
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'
-      - name: Install yarn
-        run: npm install -g yarn
-      - name: Install Package
-        run: npm install --legacy-peer-deps
+          node-version: 18
+
+      # node_modules 폴더를 캐싱한다.
+      - name: Cache node_modules
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: "**/node_modules"
+          # package-lock.json 파일의 변경이 발생했을 경우 새로 캐싱될 수 있도록 한다.
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          # cache hit이 발생하지 않았을 경우, restore-keys 에 있는 것을 꺼낸다.
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+	  # 캐시 히트가 발생하지 않으면 npm install 명령을 실행한다.
+      # 단 기존의 restore-keys 캐시에 저장된 node_modules 기반으로
+      # 추가된 패키지만 설치하기 때문에, 아예 처음부터 node_modules 폴더를 생성하는 것보다
+      # 시간이 적게 걸린다.
+      - name: Install dependencies
+        run: npm install
+        if: steps.cache.outputs.cache-hit != 'true'
+		
+      # .env 파일 생성을 위한 코드
+      # CRA는 npm run build를 할 때 .env를 자동으로 읽어와서 환경변수를 적용한다.
+      # 따라서 job.environment 설정과 별개로 .env 파일을 CI 서버에 생성해야 한다.
+      - name: Set environment variables
+        run: |
+          # 사용하고자 하는 환경변수를 등록한다.
+          echo "REACT_APP_KAKAO_KEY=${{ secrets.REACT_APP_KAKAO_KEY }}" >> .env
+          echo "REACT_APP_URL=${{ vars.REACT_APP_URL }}" >> .env
+          # PUBLIC_URL은 CRA에서 public 폴더의 위치를 가리키는 자동 생성 환경변수이다.
+          # 나의 경우 깃헙 페이지 프로젝트 url(github.io/브랜치명)을 사용해서 이 설정이 필요했다.
+          # 만약 커스텀 도메인을 연결할 거라면, 해당 설정은 필요없을 수 있다.
+          PUBLIC_URL=$(echo $GITHUB_REPOSITORY | sed -r 's/^.+\/(.+)$/\/\1\//')
+          echo "PUBLIC_URL=$PUBLIC_URL" >> .env
+
       - name: Build project
         run: npm run build
-      - name: Check build folder
-        run: ls -al ./build
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v4
-        with:
-          name: production-files
-          path: ./build
 
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
+      # 빌드된 파일들(./build)을 gh-pages 브랜치로 배포하는 작업. gh-pages의 원리에 대해선 후술
+      - uses: peaceiris/actions-gh-pages@v4
         with:
-          name: production-files
-          path: ./build
-      - name: Check downloaded files
-        run: ls -al ./build
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
+          # 이 GITHUB_TOKEN 환경변수는 기본적으로 주어지는 것으로 별도로 생성할 필요는 없다.
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
