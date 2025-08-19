@@ -13,6 +13,7 @@ import cosmos_project_logo from './assets/image/project/COSMOS_PROJECT_LOGO.png'
 import r10_project_banner from './assets/image/project/R10_PROJECT_LOGO.png';
 
 // --- 아이콘 라이브러리 import ---
+// https://react-icons.github.io/react-icons/search/#q=linkedin
 import { FaDiscord, FaLinkedin } from "react-icons/fa";
 import { RiCodeView, RiNotionFill } from "react-icons/ri";
 import { LuClipboardCheck } from "react-icons/lu";
