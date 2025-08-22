@@ -32,13 +32,26 @@ const SERVICES_DATA = [
 ];
 
 const PROJECTS_DATA = [
-  {
+{
     imgSrc: r10_project_banner,
     alt: "R10 Project Banner",
     title: "R10 Project",
     description: "Astatine Project 서버에 기반이 되는 기능을 제공해요.",
     delay: 0,
-    button: { icon: <SiGithub />, text: "코드", url: "https://github.com/Astatine-LAB/R10", hoverClass: "hover:bg-black hover:text-white" }
+    buttons: [ 
+      { 
+        icon: <SiGithub />, 
+        text: "code", 
+        url: "https://github.com/JAXPLE/R10-PUBLIC", 
+        hoverClass: "hover:bg-black hover:text-white" 
+      },
+      { 
+        icon: <RiNotionFill />, 
+        text: "Notion", 
+        url: "https://jaxple.notion.site/R10-Project-1ae92da7e82181e6b595d3dd3128d484", 
+        hoverClass: "hover:bg-gray-400" 
+      }
+    ]
   },
   {
     imgSrc: cosmos_project_logo,
@@ -46,7 +59,14 @@ const PROJECTS_DATA = [
     title: "Cosmos Project",
     description: "Trading View Webhook을 활용한 코인 정보를 고객에게 제공해요.",
     delay: 150,
-    button: { icon: <RiNotionFill />, text: "Notion", url: "https://jaxple.notion.site/COSMOS-Project-23592da7e821809dab4eea238f51fd43?source=copy_link", hoverClass: "hover:bg-gray-400" }
+    buttons: [ 
+      { 
+        icon: <RiNotionFill />, 
+        text: "Notion", 
+        url: "https://jaxple.notion.site/COSMOS-Project-23592da7e821809dab4eea238f51fd43?source=copy_link", 
+        hoverClass: "hover:bg-gray-400" 
+      }
+    ]
   },
 ];
 
@@ -153,12 +173,14 @@ const ShowcaseSection = () => (
                 <h4 className="text-2xl font-bold">{project.title}</h4>
                 <p className="mt-2 text-gray-600">{project.description}</p>
               </CardContent>
-              {project.button && (
-                <CardFooter>
-                  <Button variant="outline" className={project.button.hoverClass} onClick={() => window.open(project.button.url, '_blank', 'noopener,noreferrer')}>
-                    {project.button.icon}
-                    <span className="ml-2">{project.button.text}</span>
-                  </Button>
+              {project.buttons && (
+                <CardFooter className="flex flex-wrap gap-2">
+                  {project.buttons.map((button) => (
+                    <Button key={button.text} variant="outline" className={button.hoverClass} onClick={() => window.open(button.url, '_blank', 'noopener,noreferrer')}>
+                      {button.icon}
+                      <span className="ml-2">{button.text}</span>
+                    </Button>
+                  ))}
                 </CardFooter>
               )}
             </Card>
