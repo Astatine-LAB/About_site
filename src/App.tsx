@@ -26,7 +26,7 @@ import { SiGithub } from "react-icons/si";
 // =================================================================================
 
 const SERVICES_DATA = [
-  { icon: <RiCodeView size={30} />, title: "플러그인 개발", description: "요청한 모든 기능을 개발하고 제공해요.", delay: 100 },
+  { icon: <RiCodeView size={30} />, title: "Java기반 애플리케이션", description: "요청한 모든 기능을 개발하고 제공해요.", delay: 100 },
   { icon: <LuClipboardCheck size={30} />, title: "최적화 솔루션", description: "서버 컨셉과 맞는 적절한 최적화를 제공해요.", delay: 200 },
   { icon: <TfiHarddrives size={30} />, title: "인프라 솔루션", description: "네트워크 구성과 서버 장비까지 통합 솔루션을 제공해요.", delay: 300 },
 ];
@@ -36,7 +36,7 @@ const PROJECTS_DATA = [
     imgSrc: r10_project_banner,
     alt: "R10 Project Banner",
     title: "R10 Project",
-    description: "Astatine Project 서버에 기반이 되는 기능을 제공해요.",
+    description: "Minecraft Astatine Project 서버에 기반이 되는 기능을 제공해요.",
     delay: 0,
     buttons: [ 
       { 
@@ -123,7 +123,7 @@ const HeroSection = () => (
         </AnimatedSection>
         <AnimatedSection delay={150}>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-600 md:text-xl">
-            마인크래프트에 다양한 기능을 구현하고, 맞춤형 솔루션을 제공해요.
+            사용자 요구에 맞춘 다양한 기능을 구현하고, 맞춤형 솔루션을 제공해요.
           </p>
         </AnimatedSection>
       </div>
