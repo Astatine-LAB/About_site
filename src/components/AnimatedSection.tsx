@@ -1,8 +1,15 @@
-import React from 'react';
+
+import type { ReactNode } from 'react';
 import useIntersectionObserver from '../hooks/useIntersectionObserver';
 import clsx from 'clsx';
 
-const AnimatedSection = ({ children, className, delay = 0 }) => {
+interface AnimatedSectionProps {
+    children: ReactNode;
+    className?: string;
+    delay?: number;
+}
+
+const AnimatedSection = ({ children, className, delay = 0 }: AnimatedSectionProps) => {
     const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 
     return (
