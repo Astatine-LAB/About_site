@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://astatine-lab.github.io/About_site/",
+  "homepage": "https://astn.kr/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
