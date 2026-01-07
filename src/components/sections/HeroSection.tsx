@@ -6,7 +6,7 @@ import { GradientText } from '../ui/GradientText';
  * 페이지 최상단에 위치하는 Hero 섹션
  */
 const HeroSection = () => (
-    <section className="flex min-h-screen items-center justify-center pt-24 pb-16 text-center">
+    <section id="home" className="flex min-h-screen items-center justify-center pt-24 pb-16 text-center">
         <div className="container mx-auto px-6">
             <div className="mx-auto max-w-4xl">
                 <AnimatedSection>

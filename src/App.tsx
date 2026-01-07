@@ -29,8 +29,14 @@ export default function App() {
             <img src={astn_logo} className='h-8' alt="Astatine LAB Logo" />
             <h1 className="text-xl font-bold text-[#1d1d1f]">Astatine LAB</h1>
           </div>
-          <nav className="hidden md:flex">
-            <a href="#contact" className="font-bold text-gray-700 transition-colors" style={{ textShadow: '0 0 1px #39FF14, 0 0 3px #39FF14' }}>
+          <nav className="hidden md:flex gap-6">
+            <a href="#home" className="font-bold text-gray-700 transition-colors">
+              Home
+            </a>
+            <a href="#showcase" className="font-bold text-gray-700 transition-colors">
+              Project
+            </a>
+            <a href="#contact" className="font-bold text-gray-700 transition-colors">
               Contact
             </a>
           </nav>
