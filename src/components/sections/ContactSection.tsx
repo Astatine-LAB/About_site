@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { CONTACT_LINKS } from '@/constants/data';
 
 /**

@@ -1,5 +1,5 @@
 import AnimatedSection from '@/components/AnimatedSection';
-import { Card } from '@/components/ui/Card';
+import { Card } from '@/components/ui/card';
 import { SERVICES_DATA } from '@/constants/data';
 import { cn } from '@/lib/utils';
 

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import astnLogo from '@/assets/image/astn/ASTN_LOGO.webp';
 import type { NavItem } from '@/types';
 
