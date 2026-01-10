@@ -1,7 +1,7 @@
 
 import type { ReactNode } from 'react';
 import useIntersectionObserver from '../hooks/useIntersectionObserver';
-import clsx from 'clsx';
+import { cn } from '../lib/utils';
 
 interface AnimatedSectionProps {
     children: ReactNode;
@@ -15,9 +15,9 @@ const AnimatedSection = ({ children, className, delay = 0 }: AnimatedSectionProp
     return (
         <div
             ref={ref}
-            className={clsx(
-                'transition-all duration-1000 ease-out',
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
+            className={cn(
+                'transition-all duration-1000 ease-out transform',
+                isVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm',
                 className
             )}
             style={{ transitionDelay: `${delay}ms` }}

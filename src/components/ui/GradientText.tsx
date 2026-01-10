@@ -1,21 +1,12 @@
 
 import type { ReactNode } from 'react';
-
-interface GradientTextProps {
-    children: ReactNode;
-    gradient: string;
-}
+import { cn } from '../../lib/utils';
 
 /**
- * 그라데이션 효과가 적용된 텍스트를 렌더링하는 컴포넌트
+ * UI COMPONENTS
  */
-export const GradientText = ({ children, gradient }: GradientTextProps) => (
-    <span style={{
-        background: gradient,
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        textShadow: '0 3px 15px rgba(120, 34, 211, 0.25)'
-    }}>
+export const GradientText = ({ children, className }: { children: ReactNode; className?: string }) => (
+    <span className={cn("bg-clip-text text-transparent bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 animate-gradient-x bg-[length:200%_auto]", className)}>
         {children}
     </span>
 );

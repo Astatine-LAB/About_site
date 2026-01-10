@@ -1,23 +1,34 @@
 
 import AnimatedSection from '../AnimatedSection';
+import { Card } from '../ui/card';
 import { SERVICES_DATA } from '../../constants/data';
+import { cn } from '../../lib/utils';
 
 /**
  * 제공하는 서비스 목록을 보여주는 Services 섹션
  */
 const ServicesSection = () => (
-    <section id="services" className="bg-white py-20 md:py-32">
+    <section id="services" className="py-32 relative">
         <div className="container mx-auto px-6">
-            <AnimatedSection className="mb-16 text-center">
-                <h3 className="text-4xl font-bold text-[#1d1d1f] md:text-5xl">dev.</h3>
+            <AnimatedSection className="mb-20 text-center">
+                <h2 className="text-sm font-bold text-violet-600 tracking-widest uppercase mb-3">What We Do</h2>
+                <h3 className="text-4xl md:text-5xl font-bold text-slate-900">Expertise & Solutions</h3>
                 <p className="mx-auto mt-4 max-w-xl text-gray-600">Astatine LAB은 여러분의 서버에 가장 적절한 솔루션을 제공해요.</p>
             </AnimatedSection>
-            <div className="grid gap-10 md:grid-cols-3">
+
+            <div className="grid gap-8 md:grid-cols-3">
                 {SERVICES_DATA.map((service) => (
-                    <AnimatedSection key={service.title} delay={service.delay} className="p-8 text-center">
-                        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">{service.icon}</div>
-                        <h4 className="mb-2 text-2xl font-bold text-[#1d1d1f]">{service.title}</h4>
-                        <p className="text-gray-600">{service.description}</p>
+                    <AnimatedSection key={service.title} delay={service.delay}>
+                        <Card className={cn(
+                            "h-full p-8 hover:border-violet-200 transition-colors duration-300",
+                            "group relative bg-white/70 backdrop-blur-lg rounded-3xl border border-white/20 shadow-xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 hover:bg-white/90"
+                        )}>
+                            <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 text-slate-900 group-hover:bg-gradient-to-br group-hover:from-blue-600 group-hover:to-cyan-500 group-hover:text-white transition-all duration-300">
+                                {service.icon}
+                            </div>
+                            <h4 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h4>
+                            <p className="text-slate-600 mb-6 leading-relaxed">{service.description}</p>
+                        </Card>
                     </AnimatedSection>
                 ))}
             </div>

@@ -1,45 +1,82 @@
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import astn_logo from './assets/image/astn/ASTN_LOGO.webp';
+import { Menu, X } from 'lucide-react';
+import { cn } from './lib/utils';
+import { Button } from './components/ui/button';
 
 // Section Components
 import HeroSection from './components/sections/HeroSection';
 import ServicesSection from './components/sections/ServicesSection';
 import ShowcaseSection from './components/sections/ShowcaseSection';
 import ContactSection from './components/sections/ContactSection';
+import Footer from './components/Footer';
 
 export default function App() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   // 컴포넌트 마운트 시 body의 전역 스타일을 설정합니다.
   useEffect(() => {
-    document.body.style.backgroundColor = '#fbfbfd';
-    document.body.style.color = '#1d1d1f';
-    document.body.style.fontFamily = "'Inter', 'Noto Sans KR', sans-serif";
-    document.documentElement.classList.add('scroll-smooth');
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // 페이지 레이아웃(헤더, 메인, 푸터)과 각 섹션을 조합하여 최종 페이지를 렌더링합니다.
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-violet-200 selection:text-violet-900">
+      {/* Header */}
       <header
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-        style={{ background: 'rgba(251, 251, 253, 0.8)', backdropFilter: 'saturate(180%) blur(20px)', WebkitBackdropFilter: 'saturate(180%) blur(20px)' }}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          isScrolled ? "bg-white/80 backdrop-blur-md py-4 shadow-sm border-b border-slate-100" : "bg-transparent py-6"
+        )}
       >
-        <div className="container mx-auto flex items-center justify-between px-6 py-4">
-          <div className='flex items-center gap-3'>
+        <div className="container mx-auto flex items-center justify-between px-6">
+          <div className='flex items-center gap-3 z-50'>
             <img src={astn_logo} className='h-8' alt="Astatine LAB Logo" />
-            <h1 className="text-xl font-bold text-[#1d1d1f]">Astatine LAB</h1>
+            <span className="text-lg font-bold tracking-tight">Astatine LAB</span>
           </div>
-          <nav className="hidden md:flex gap-6">
-            <a href="#home" className="font-bold text-gray-700 transition-colors">
-              Home
-            </a>
-            <a href="#showcase" className="font-bold text-gray-700 transition-colors">
-              Project
-            </a>
-            <a href="#contact" className="font-bold text-gray-700 transition-colors">
-              Contact
-            </a>
+
+          <nav className="hidden md:flex gap-8 items-center">
+            {['Home', 'Services', 'Showcase'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+              >
+                {item}
+              </a>
+            ))}
+            <Button variant="default" className="bg-slate-900 text-white hover:bg-slate-800" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+              프로젝트 보기
+            </Button>
           </nav>
+
+          {/* Mobile Menu Toggle */}
+          <button className="md:hidden z-50 p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            {isMobileMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
+
+        {/* Mobile Nav */}
+        <div className={cn(
+          "fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-8 transition-transform duration-300 md:hidden",
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        )}>
+          {['Home', 'Services', 'Showcase', 'Contact'].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="text-2xl font-bold text-slate-900"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {item}
+            </a>
+          ))}
         </div>
       </header>
 
@@ -50,11 +87,7 @@ export default function App() {
         <ContactSection />
       </main>
 
-      <footer className="bg-white py-12">
-        <div className="container mx-auto px-6 text-center text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Astatine LAB. All Rights Reserved.</p>
-        </div>
-      </footer>
-    </>
+      <Footer />
+    </div>
   );
 }
