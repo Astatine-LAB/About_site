@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 import astnLogo from '@/assets/image/astn/ASTN_LOGO.webp';
 import type { NavItem } from '@/types';
 
@@ -9,7 +8,6 @@ const NAV_ITEMS: NavItem[] = [
     { label: 'Home', href: '#home' },
     { label: 'Services', href: '#services' },
     { label: 'Showcase', href: '#showcase' },
-    { label: 'Contact', href: '#contact' },
 ];
 
 const SCROLL_THRESHOLD = 50;
@@ -113,9 +111,6 @@ export default function Header({ className }: HeaderProps) {
                             {item.label}
                         </a>
                     ))}
-                    <Button variant="default" asChild>
-                        <a href="#contact">프로젝트 문의</a>
-                    </Button>
                 </nav>
 
                 <button

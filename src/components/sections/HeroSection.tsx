@@ -36,9 +36,6 @@ export default function HeroSection() {
                     </p>
 
                     <div className="flex flex-col gap-3 sm:flex-row">
-                        <Button asChild size="lg">
-                            <a href="#contact">프로젝트 문의</a>
-                        </Button>
                         <Button variant="outline" asChild size="lg">
                             <a href="#showcase">쇼케이스 보기</a>
                         </Button>

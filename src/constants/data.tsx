@@ -1,13 +1,11 @@
-import { FaDiscord, FaLinkedin } from 'react-icons/fa';
 import { RiCodeView, RiNotionFill } from 'react-icons/ri';
 import { LuClipboardCheck } from 'react-icons/lu';
 import { TfiHarddrives } from 'react-icons/tfi';
-import { SiGithub } from 'react-icons/si';
 
 import cosmosProjectLogo from '@/assets/image/project/COSMOS_PROJECT_LOGO.png';
 import r10ProjectBanner from '@/assets/image/project/R10_PROJECT_LOGO.png';
 
-import type { ContactLink, ProjectItem, ServiceItem } from '@/types';
+import type { ProjectItem, ServiceItem } from '@/types';
 
 export const SERVICES_DATA: ServiceItem[] = [
     {
@@ -39,11 +37,6 @@ export const PROJECTS_DATA: ProjectItem[] = [
         delay: 0,
         buttons: [
             {
-                icon: <SiGithub />,
-                text: 'Source Code',
-                url: 'https://github.com/JAXPLE/R10-PUBLIC',
-            },
-            {
                 icon: <RiNotionFill />,
                 text: 'Project Docs',
                 url: 'https://jaxple.notion.site/R10-Project-1ae92da7e82181e6b595d3dd3128d484',
@@ -63,29 +56,5 @@ export const PROJECTS_DATA: ProjectItem[] = [
                 url: 'https://jaxple.notion.site/COSMOS-Project-23592da7e821809dab4eea238f51fd43?source=copy_link',
             },
         ],
-    },
-];
-
-export const CONTACT_LINKS: ContactLink[] = [
-    {
-        icon: <FaDiscord />,
-        text: 'Discord',
-        url: 'https://discord.gg/Ek2HXfJUQ3',
-        isPrimary: true,
-    },
-    {
-        icon: <SiGithub />,
-        text: 'Github',
-        url: 'https://github.com/Astatine-LAB',
-    },
-    {
-        icon: <FaLinkedin />,
-        text: 'Linkedin',
-        url: 'https://linkedin.com/company/astatine-lab',
-    },
-    {
-        icon: <RiNotionFill />,
-        text: 'Notion',
-        url: 'https://jaxple.notion.site/ASTATINE-LAB-cfd82eaa93fa40a28715a1ba5a0f03bf?source=copy_link/',
     },
 ];

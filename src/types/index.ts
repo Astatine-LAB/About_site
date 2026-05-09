@@ -22,13 +22,6 @@ export interface ProjectItem {
     buttons: ProjectButton[];
 }
 
-export interface ContactLink {
-    icon: ReactNode;
-    text: string;
-    url: string;
-    isPrimary?: boolean;
-}
-
 export interface NavItem {
     label: string;
     href: string;
