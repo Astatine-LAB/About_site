@@ -9,9 +9,6 @@ import r10ProjectBanner from '@/assets/image/project/R10_PROJECT_LOGO.png';
 
 import type { ContactLink, ProjectItem, ServiceItem } from '@/types';
 
-/**
- * 서비스 섹션에 표시되는 서비스 데이터
- */
 export const SERVICES_DATA: ServiceItem[] = [
     {
         icon: <RiCodeView size={30} />,
@@ -33,9 +30,6 @@ export const SERVICES_DATA: ServiceItem[] = [
     },
 ];
 
-/**
- * 쇼케이스 섹션에 표시되는 프로젝트 데이터
- */
 export const PROJECTS_DATA: ProjectItem[] = [
     {
         imgSrc: r10ProjectBanner,
@@ -48,13 +42,11 @@ export const PROJECTS_DATA: ProjectItem[] = [
                 icon: <SiGithub />,
                 text: 'Source Code',
                 url: 'https://github.com/JAXPLE/R10-PUBLIC',
-                hoverClass: 'hover:bg-black hover:text-white',
             },
             {
                 icon: <RiNotionFill />,
                 text: 'Project Docs',
                 url: 'https://jaxple.notion.site/R10-Project-1ae92da7e82181e6b595d3dd3128d484',
-                hoverClass: 'hover:bg-gray-400',
             },
         ],
     },
@@ -69,38 +61,31 @@ export const PROJECTS_DATA: ProjectItem[] = [
                 icon: <RiNotionFill />,
                 text: 'Project Docs',
                 url: 'https://jaxple.notion.site/COSMOS-Project-23592da7e821809dab4eea238f51fd43?source=copy_link',
-                hoverClass: 'hover:bg-gray-400',
             },
         ],
     },
 ];
 
-/**
- * 연락처 섹션에 표시되는 링크 데이터
- */
 export const CONTACT_LINKS: ContactLink[] = [
     {
         icon: <FaDiscord />,
         text: 'Discord',
         url: 'https://discord.gg/Ek2HXfJUQ3',
-        hoverClass: 'hover:bg-[#5865F2] hover:text-white',
+        isPrimary: true,
     },
     {
         icon: <SiGithub />,
         text: 'Github',
         url: 'https://github.com/Astatine-LAB',
-        hoverClass: 'hover:bg-black hover:text-white',
     },
     {
         icon: <FaLinkedin />,
         text: 'Linkedin',
         url: 'https://linkedin.com/company/astatine-lab',
-        hoverClass: 'hover:bg-[#0A66C2] hover:text-white',
     },
     {
         icon: <RiNotionFill />,
         text: 'Notion',
         url: 'https://jaxple.notion.site/ASTATINE-LAB-cfd82eaa93fa40a28715a1ba5a0f03bf?source=copy_link/',
-        hoverClass: 'hover:bg-gray-400',
     },
 ];

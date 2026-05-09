@@ -1,19 +1,23 @@
 import astnLogo from '@/assets/image/astn/ASTN_LOGO.webp';
 
 /**
- * 페이지 하단 푸터 컴포넌트
+ * Renders the site footer.
  */
 export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="py-12 border-t border-slate-100 bg-white">
-            <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <footer className="border-t border-white/10 bg-black py-10 text-white/60">
+            <div className="container mx-auto flex flex-col items-center justify-between gap-6 px-6 md:flex-row">
                 <div className="flex items-center gap-3">
-                    <img src={astnLogo} className="h-8" alt="Astatine LAB Logo" />
-                    <span className="font-bold text-slate-900 text-lg">Astatine LAB</span>
+                    <img
+                        src={astnLogo}
+                        className="h-8 brightness-0 invert"
+                        alt="Astatine LAB Logo"
+                    />
+                    <span className="text-lg font-bold text-white">Astatine LAB</span>
                 </div>
-                <p className="text-slate-500 text-sm">
+                <p className="text-sm text-white/55">
                     &copy; {currentYear} Astatine LAB. All rights reserved.
                 </p>
             </div>

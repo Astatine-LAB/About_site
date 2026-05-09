@@ -5,12 +5,11 @@ import { cn } from '@/lib/utils';
 interface AnimatedSectionProps {
     children: ReactNode;
     className?: string;
-    /** 애니메이션 지연 시간 (밀리초) */
     delay?: number;
 }
 
 /**
- * 스크롤 시 fade-in 애니메이션이 적용되는 섹션 래퍼 컴포넌트
+ * Reveals section content when it enters the viewport.
  */
 export default function AnimatedSection({
     children,

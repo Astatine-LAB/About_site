@@ -4,19 +4,19 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-    'inline-flex items-center justify-center rounded-full font-medium transition-all duration-300 transform active:scale-95 disabled:pointer-events-none disabled:opacity-50',
+    'inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-300 transform active:scale-95 focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50',
     {
         variants: {
             variant: {
                 default:
-                    'bg-slate-900 text-white hover:bg-slate-800 shadow-lg hover:shadow-xl hover:-translate-y-0.5',
+                    'bg-black text-white hover:bg-black/85 shadow-lg hover:shadow-xl hover:-translate-y-0.5',
                 destructive:
                     'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
                 outline:
-                    'border-2 border-slate-200 text-slate-700 hover:border-slate-900 hover:text-slate-900 bg-transparent',
+                    'border-2 border-black/15 bg-white text-black hover:border-black hover:text-black',
                 secondary:
                     'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
-                ghost: 'text-slate-600 hover:text-slate-900 hover:bg-slate-100',
+                ghost: 'text-black/65 hover:bg-black/5 hover:text-black',
                 link: 'text-primary underline-offset-4 hover:underline',
             },
             size: {
@@ -54,4 +54,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
 Button.displayName = 'Button';
 
-export { Button, buttonVariants };
+export { Button };

@@ -8,8 +8,7 @@ interface UseIntersectionObserverOptions {
 }
 
 /**
- * 요소가 뷰포트에 진입했는지 감지하는 커스텀 훅
- * 한 번 감지되면 옵저버를 해제하여 성능 최적화
+ * Detects when an element enters the viewport once.
  */
 const useIntersectionObserver = (
     options: UseIntersectionObserverOptions = {}
@@ -17,7 +16,6 @@ const useIntersectionObserver = (
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 
-    // options 객체를 메모이제이션하여 불필요한 재생성 방지
     const observerOptions = useMemo(
         () => ({
             threshold: options.threshold ?? 0.1,
@@ -28,24 +26,30 @@ const useIntersectionObserver = (
     );
 
     useEffect(() => {
-        const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-                setIsVisible(true);
-                observer.unobserve(entry.target);
-            }
-        }, observerOptions);
-
-        const currentRef = ref.current;
-        if (currentRef) {
-            observer.observe(currentRef);
+        if (isVisible) {
+            return;
         }
 
-        return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
+        const currentRef = ref.current;
+        if (!currentRef) {
+            return;
+        }
+
+        const observer = new IntersectionObserver(([entry]) => {
+            if (!entry.isIntersecting) {
+                return;
             }
+
+            setIsVisible(true);
+            observer.unobserve(entry.target);
+        }, observerOptions);
+
+        observer.observe(currentRef);
+
+        return () => {
+            observer.disconnect();
         };
-    }, [observerOptions]);
+    }, [isVisible, observerOptions]);
 
     return [ref, isVisible];
 };
