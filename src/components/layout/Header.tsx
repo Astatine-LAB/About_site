@@ -17,7 +17,7 @@ interface HeaderProps {
 }
 
 /**
- * Renders the fixed site header and responsive navigation.
+ * 고정 헤더와 반응형 내비게이션을 렌더링합니다.
  */
 export default function Header({ className }: HeaderProps) {
     const [isScrolled, setIsScrolled] = useState(false);

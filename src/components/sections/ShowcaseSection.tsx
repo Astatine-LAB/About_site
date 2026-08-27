@@ -1,4 +1,4 @@
-import AnimatedSection from '@/components/AnimatedSection';
+import ScrollSlide from '@/components/ScrollSlide';
 import SectionHeader from '@/components/SectionHeader';
 import { PROJECTS_DATA } from '@/constants/data';
 import type { ProjectButton, ProjectItem } from '@/types';
@@ -8,7 +8,7 @@ interface ProjectOverlayProps {
 }
 
 /**
- * Renders the hover overlay actions for a project card.
+ * 프로젝트 카드의 호버 액션 오버레이를 렌더링합니다.
  */
 function ProjectOverlay({ buttons }: ProjectOverlayProps) {
     return (
@@ -40,11 +40,11 @@ interface ProjectCardProps {
 }
 
 /**
- * Renders a single project showcase item.
+ * 단일 프로젝트 쇼케이스 카드를 렌더링합니다.
  */
 function ProjectCard({ project }: ProjectCardProps) {
     return (
-        <article className="group relative h-full overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+        <article className="group relative h-full overflow-hidden rounded-lg border border-black/10 bg-white shadow-xl transition-all duration-500 hover:-translate-y-1 hover:border-black hover:shadow-2xl">
             <div className="relative flex h-64 w-full items-center justify-center overflow-hidden bg-black/5">
                 <img
                     src={project.imgSrc}
@@ -72,28 +72,29 @@ function ProjectCard({ project }: ProjectCardProps) {
 }
 
 /**
- * Renders the project showcase section.
+ * 프로젝트 쇼케이스 섹션을 렌더링합니다.
  */
 export default function ShowcaseSection() {
     return (
-        <section id="showcase" className="bg-white py-24 md:py-32">
-            <div className="container mx-auto px-6">
-                <AnimatedSection className="mb-14 md:mb-20">
+        <section
+            id="showcase"
+            className="flex min-h-[90svh] items-center overflow-hidden bg-white py-24 md:py-32"
+        >
+            <ScrollSlide from="left" className="container mx-auto px-6">
+                <div className="mb-14 md:mb-20">
                     <SectionHeader
                         eyebrow="Our Portfolio"
                         title="임팩트를 만들어낸 주요 프로젝트 사례입니다."
                         description="프로젝트의 핵심 결과물과 문서를 간결한 카드 인터랙션으로 확인할 수 있습니다."
                     />
-                </AnimatedSection>
+                </div>
 
                 <div className="grid gap-8 md:grid-cols-2">
                     {PROJECTS_DATA.map((project) => (
-                        <AnimatedSection key={project.title} delay={project.delay}>
-                            <ProjectCard project={project} />
-                        </AnimatedSection>
+                        <ProjectCard key={project.title} project={project} />
                     ))}
                 </div>
-            </div>
+            </ScrollSlide>
         </section>
     );
 }

@@ -110,6 +110,27 @@
   --sidebar-ring: white;
 }
 
+@layer components {
+  .scroll-slide {
+    opacity: var(--scroll-slide-opacity, 1);
+    transform: translate3d(var(--scroll-slide-x, 0), 0, 0)
+      scale(var(--scroll-slide-scale, 1));
+    transition:
+      opacity 120ms linear,
+      transform 120ms linear;
+    transform-origin: center;
+    will-change: opacity, transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-slide {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

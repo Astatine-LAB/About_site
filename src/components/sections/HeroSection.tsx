@@ -1,9 +1,8 @@
 import AnimatedSection from '@/components/AnimatedSection';
-import { Button } from '@/components/ui/button';
 import astnBanner from '@/assets/image/astn/ASTN_BANNER.png';
 
 /**
- * Renders the brand-led hero section.
+ * 브랜드 중심의 히어로 섹션을 렌더링합니다.
  */
 export default function HeroSection() {
     return (
@@ -21,26 +20,24 @@ export default function HeroSection() {
             />
 
             <div className="container z-10 mx-auto px-6 py-20 md:py-28">
-                <AnimatedSection className="max-w-4xl">
-                    <p className="mb-6 inline-flex rounded-full border border-black/15 bg-white px-4 py-2 text-xs font-bold uppercase text-black shadow-sm">
-                        Java Application & Infrastructure Studio
-                    </p>
-                    <h1 className="mb-8 text-5xl font-extrabold leading-[0.95] text-black md:text-7xl lg:text-8xl">
-                        Astatine LAB
-                    </h1>
+                <div className="max-w-5xl">
+                    <AnimatedSection duration={950} variant="block">
+                        <h1 className="text-5xl leading-[0.95] font-extrabold text-black md:text-7xl lg:text-8xl">
+                            Astatine LAB
+                        </h1>
+                    </AnimatedSection>
 
-                    <p className="text-keep mb-10 max-w-3xl text-lg font-medium leading-8 text-black/70 md:text-xl">
-                        아이디어를 견고한 아키텍처와 운영 가능한 코드로 구현합니다.
-                        Java 기반 애플리케이션, 성능 최적화, 인프라 설계를 하나의
-                        흐름으로 연결해 비즈니스 가치를 빠르게 검증합니다.
-                    </p>
-
-                    <div className="flex flex-col gap-3 sm:flex-row">
-                        <Button variant="outline" asChild size="lg">
-                            <a href="#showcase">쇼케이스 보기</a>
-                        </Button>
-                    </div>
-                </AnimatedSection>
+                    <AnimatedSection
+                        className="mt-8"
+                        delay={170}
+                        duration={850}
+                        variant="fade-up"
+                    >
+                        <p className="text-keep max-w-4xl text-base leading-7 font-medium text-black/65 md:text-lg md:leading-8 lg:whitespace-nowrap lg:text-xl">
+                            아이디어를 견고한 아키텍처와 운영 가능한 코드로 구현합니다.
+                        </p>
+                    </AnimatedSection>
+                </div>
             </div>
         </section>
     );

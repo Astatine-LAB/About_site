@@ -1,7 +1,7 @@
 import astnLogo from '@/assets/image/astn/ASTN_LOGO.webp';
 
 /**
- * Renders the site footer.
+ * 사이트 푸터를 렌더링합니다.
  */
 export default function Footer() {
     const currentYear = new Date().getFullYear();

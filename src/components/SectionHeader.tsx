@@ -38,7 +38,7 @@ const toneClassNames: Record<
 };
 
 /**
- * Renders a reusable section heading block with consistent rhythm and tone.
+ * 일관된 여백과 톤을 가진 섹션 제목 블록을 렌더링합니다.
  */
 export default function SectionHeader({
     eyebrow,

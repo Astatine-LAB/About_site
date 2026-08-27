@@ -5,7 +5,7 @@ import ShowcaseSection from '@/components/sections/ShowcaseSection';
 import Footer from '@/components/Footer';
 
 /**
- * Renders the top-level site layout.
+ * 사이트의 최상위 레이아웃을 렌더링합니다.
  */
 export default function App() {
   return (
