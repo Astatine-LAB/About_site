@@ -16,7 +16,7 @@ export default function HeroSection() {
                 src={astnBanner}
                 alt=""
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 w-full min-w-[900px] max-w-none object-cover object-bottom opacity-[0.06] grayscale"
+                className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-auto w-full opacity-[0.06] grayscale"
             />
 
             <div className="container z-10 mx-auto px-6 py-20 md:py-28">
