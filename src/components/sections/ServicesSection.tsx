@@ -9,9 +9,9 @@ export default function ServicesSection() {
     return (
         <section
             id="services"
-            className="relative flex min-h-[90svh] items-center overflow-hidden border-b border-black/10 bg-white py-24 md:py-32"
+            className="relative flex items-center overflow-hidden border-b border-black/10 bg-white py-24 md:py-32"
         >
-            <ScrollSlide from="right" className="container mx-auto px-6">
+            <ScrollSlide from="right" className="page-width">
                 <div className="mb-14 md:mb-20">
                     <SectionHeader
                         align="center"
@@ -25,7 +25,7 @@ export default function ServicesSection() {
                     {SERVICES_DATA.map((service) => (
                         <article
                             key={service.title}
-                            className="group relative h-full overflow-hidden rounded-lg border border-black/10 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-black hover:shadow-xl"
+                            className="group relative h-full overflow-hidden rounded-lg border border-black/10 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-black hover:shadow-md"
                         >
                             <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-black transition-transform duration-300 group-hover:scale-x-100" />
                             <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-md bg-black text-white transition duration-300 group-hover:bg-black/85">

@@ -8,7 +8,7 @@ export default function Footer() {
 
     return (
         <footer className="border-t border-white/10 bg-black py-10 text-white/60">
-            <div className="container mx-auto flex flex-col items-center justify-between gap-6 px-6 md:flex-row">
+            <div className="page-width flex flex-col items-center justify-between gap-6 md:flex-row">
                 <div className="flex items-center gap-3">
                     <img
                         src={astnLogo}

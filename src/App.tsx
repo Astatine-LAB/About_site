@@ -9,10 +9,11 @@ import Footer from '@/components/Footer';
  */
 export default function App() {
   return (
-    <div className="min-h-screen bg-white font-sans text-black selection:bg-black selection:text-white">
+    <div className="site-shell">
+      <a className="skip-link" href="#main-content">본문으로 건너뛰기</a>
       <Header />
 
-      <main>
+      <main id="main-content">
         <HeroSection />
         <ServicesSection />
         <ShowcaseSection />

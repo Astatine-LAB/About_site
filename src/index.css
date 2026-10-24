@@ -155,3 +155,114 @@
     overflow-wrap: break-word;
   }
 }
+
+/* Shared alignment and navigation for the monochrome Astatine identity. */
+.page-width {
+  width: min(1200px, calc(100% - 96px));
+  margin-inline: auto;
+}
+
+.hero-title {
+  font-size: clamp(46px, 7.8vw, 108px);
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: -80px;
+  left: 20px;
+  padding: 14px 20px;
+  background: black;
+  color: white;
+}
+
+.skip-link:focus { top: 12px; }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
+}
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  border-bottom: 1px solid rgb(0 0 0 / 8%);
+  background: rgb(255 255 255 / 94%);
+  backdrop-filter: blur(16px);
+}
+
+.header-inner {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.brand img { object-fit: contain; filter: brightness(0); }
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  color: rgb(0 0 0 / 65%);
+  font-size: 14px;
+}
+
+.desktop-nav a { padding-block: 12px; }
+.desktop-nav a:hover { color: black; }
+.menu-toggle { display: none; cursor: pointer; padding: 10px; border-radius: 6px; }
+.mobile-nav { display: none; }
+.project-image {
+  height: clamp(220px, 24vw, 300px);
+  padding: 24px;
+  background: #f7f7f7;
+  border-bottom: 1px solid rgb(0 0 0 / 8%);
+}
+
+@media (max-width: 760px) {
+  .page-width { width: calc(100% - 40px); }
+  .header-inner { height: 72px; }
+  .brand { font-size: 16px; gap: 10px; }
+  .desktop-nav { display: none; }
+  .menu-toggle { display: inline-flex; }
+  .mobile-nav:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 20px 20px;
+    border-top: 1px solid rgb(0 0 0 / 8%);
+    background: white;
+  }
+  .mobile-nav a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 17px 0;
+    border-bottom: 1px solid rgb(0 0 0 / 8%);
+    font-size: 18px;
+  }
+  .mobile-nav a > span { color: #777; font-size: 11px; }
+  .mobile-nav a > svg { margin-left: auto; }
+  .project-image { height: 220px; padding: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
